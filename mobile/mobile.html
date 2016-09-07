@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	<title>Scroll Page Animation</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		body{padding-top: 0.2rem;}
+
+		.list{width: 6.4rem; margin: 0 auto; overflow: hidden;}
+
+		.list li{list-style: none; position: relative; margin: 0 auto 0.2rem; width: 6rem; height: 1rem; line-height: 1rem; font-size: 0.6rem; text-align: center; background: #000; color: #fff; /*-webkit-transform: translate3d(0px,0px,0px); */ -webkit-backface-visibility: hidden; -webkit-perspective: 1000;}
+
+		li:nth-child(1){ background: #f00;}
+		li:nth-child(2){ background: #018001;}
+		li:nth-child(3){ background: #00f;}
+		li:nth-child(4){ background: #ff6600;}
+		li:nth-child(5){ background: #81C31D;}
+		li:nth-child(6){ background: #019380;}
+		li:nth-child(7){ background: #0D4EA6;}
+		li:nth-child(8){ background: #FF8000;}
+		li:nth-child(9){ background: #82007E;}
+		li:nth-child(10){ background: #FF4303;}
+		li:nth-child(11){ background: #14007F;}
+		li:nth-child(12){ background: #FF0001;}
+
+		li:nth-child(3n-1).animated{ -webkit-animation-delay: 0.4s; animation-delay: 0.3s;}
+		li:nth-child(3n-2).animated{ -webkit-animation-delay: 0.8s; animation-delay: 0.6s;}
+
+		.animated li, li.animated{ -webkit-animation:fadeInToTop 0.5s ease both; animation:fadeInToTop 0.5s ease both; }
+		.animated li:nth-child(2), li:nth-child(2).animated{ -webkit-animation-delay: 0.4s; animation-delay: 0.3s; }
+		.animated li:nth-child(3), li:nth-child(3).animated{ -webkit-animation-delay: 0.8s; animation-delay: 0.6s; }
+		
+		.A1{ -webkit-animation:fadeInToTop 0.6s ease both; animation:fadeInToTop 0.6s ease both; }
+		.A2{ -webkit-animation:zoomIn 0.6s ease both; animation:zoomIn 0.6s ease both; }
+		.A3{ -webkit-animation:slideToLeft 1s ease both; animation:slideToLeft 1s ease both; }
+		.A4{ -webkit-animation:slideToRight 1s ease both; animation:slideToRight 1s ease both; }
+
+		
+		@-webkit-keyframes fadeInToTop {
+			0% { opacity: 0; -webkit-transform: translateY(500px); } 
+			100% { opacity: 1; -webkit-transform: translateY(0px); }
+		}
+		@keyframes fadeInToTop {
+			0% { opacity: 0; transform: translateY(500px); } 
+			100% { opacity: 1; transform: translateY(0px); }
+		}
+
+		@-webkit-keyframes zoomIn{
+			0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3); transform:scale3d(.3,.3,.3);}
+			50%{opacity:1;}
+		}
+		@keyframes zoomIn{
+			0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3); transform:scale3d(.3,.3,.3);}
+			50%{opacity:1;}
+		}
+
+		@-webkit-keyframes slideToLeft{
+			0%{-webkit-transform:translateX(2000px);transform:translateX(2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+		@keyframes slideToLeft{
+			0%{-webkit-transform:translateX(2000px);transform:translateX(2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+
+		@-webkit-keyframes slideToRight{
+			0%{-webkit-transform:translateX(-2000px);transform:translateX(-2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+		@keyframes slideToRight{
+			0%{-webkit-transform:translateX(-2000px);transform:translateX(-2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+
+	</style>
+	
+	<script type="text/javascript" src="rem_640.js"></script>
+
+</head>
+<body>
+
+	<ul class="list">
+		<li class="spa" data-animate="A1">谢</li>
+		<li class="spa" data-animate="A2">谢</li>
+		<li class="spa" data-animate="A3">你</li>
+		<li class="spa" data-animate="A4">哈</li>
+		<li class="spa" data-animate="A1">哈</li>
+		<li class="spa" data-animate="A2">哈</li>
+		<li class="spa" data-animate="A3">1</li>
+		<li class="spa" data-animate="A4">2</li>
+		<li class="spa" data-animate="A1">3</li>
+		<li class="spa" data-animate="A2">4</li>
+		<li class="spa" data-animate="A3">5</li>
+		<li class="spa" data-animate="A4">6</li>
+	</ul>
+	<ul class="list spa">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<ul class="list">
+		<li class="spa" data-animate="A1">7</li>
+		<li class="spa" data-animate="A2">8</li>
+		<li class="spa" data-animate="A3">9</li>
+		<li class="spa" data-animate="A4">10</li>
+	</ul>
+	<ul class="list">
+		<li class="spa" data-animate="A1">A</li>
+		<li class="spa" data-animate="A2">B</li>
+		<li class="spa" data-animate="A3">C</li>
+		<li class="spa" data-animate="A4">D</li>
+		<li class="spa" data-animate="A1">E</li>
+		<li class="spa" data-animate="A2">F</li>
+		<li class="spa" data-animate="A3">我</li>
+		<li class="spa" data-animate="A4">爱</li>
+		<li class="spa" data-animate="A1">你</li>
+		<li class="spa" data-animate="A2">E</li>
+		<li class="spa" data-animate="A3">N</li>
+		<li class="spa" data-animate="A4">D</li>
+	</ul>
+
+	<script type="text/javascript" src="../spa.min.js"></script>
+	<script>
+		new SPA().start();
+	</script>
+
+</body>
+</html>

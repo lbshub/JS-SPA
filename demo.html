@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">	
+	<title>Scroll Page Animation</title>
+	
+	<script>
+		// console.time('用时');	
+	</script>
+
+	<style>
+		*{margin: 0; padding: 0;}
+		body{font-family: "Microsoft Yahei";}
+
+		.list{width: 700px; margin: 0 auto;}
+		.list:after{display:block; clear:both; content:""; overflow:hidden; height:0;}
+
+		.list li{list-style: none; float: left; width: 200px; height: 200px; margin-bottom: 50px; line-height: 200px; font-size: 100px; text-align: center; background: #000; color: #fff;}
+		li:nth-child(3n-1){ margin: 0 50px;}
+
+		li:nth-child(1){ background: #f00;}
+		li:nth-child(2){ background: #018001;}
+		li:nth-child(3){ background: #00f;}
+		li:nth-child(4){ background: #ff6600;}
+		li:nth-child(5){ background: #81C31D;}
+		li:nth-child(6){ background: #019380;}
+		li:nth-child(7){ background: #0D4EA6;}
+		li:nth-child(8){ background: #FF8000;}
+		li:nth-child(9){ background: #82007E;}
+		li:nth-child(10){ background: #FF4303;}
+		li:nth-child(11){ background: #14007F;}
+		li:nth-child(12){ background: #FF0001;}
+
+		li:nth-child(3n-1).animated{ -webkit-animation-delay: 0.4s; animation-delay: 0.3s;}
+		li:nth-child(3n-2).animated{ -webkit-animation-delay: 0.8s; animation-delay: 0.6s;}
+
+		.animated li, li.animated{ -webkit-animation:fadeInToTop 0.5s ease both; animation:fadeInToTop 0.5s ease both; }
+		.animated li:nth-child(2), li:nth-child(2).animated{ -webkit-animation-delay: 0.4s; animation-delay: 0.3s; }
+		.animated li:nth-child(3), li:nth-child(3).animated{ -webkit-animation-delay: 0.8s; animation-delay: 0.6s; }
+		
+		.A1{ -webkit-animation:bounceInDown 0.5s ease both; animation:bounceInDown 0.5s ease both; }
+		.A2{ -webkit-animation:zoomIn 0.5s ease both; animation:zoomIn 0.5s ease both; }
+		.A3{ -webkit-animation:rubberBand 0.5s ease both; animation:rubberBand 0.5s ease both; }
+		.A4{ -webkit-animation:fadeInToTop 0.5s ease both; animation:fadeInToTop 0.5s ease both; }
+
+		.B1{ -webkit-animation:slideToLeft 0.5s 0.3s ease both; animation:slideToLeft 0.5s 0.3s ease both; }
+		.B2{ -webkit-animation:slideToRight 0.5s 0.3s ease both; animation:slideToRight 0.5s 0.3s ease both; }
+		.B3{ -webkit-animation:slideToBottom 0.5s 0.3s ease both; animation:slideToBottom 0.3s 0.6s ease both; }
+		.B4{ -webkit-animation:slideToTop 0.5s 0.3s ease both; animation:slideToTop 0.5s 0.3s ease both; }
+	
+		@-webkit-keyframes slideToLeft{
+			0%{-webkit-transform:translateX(2000px);transform:translateX(2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+		@keyframes slideToLeft{
+			0%{-webkit-transform:translateX(2000px);transform:translateX(2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+
+		@-webkit-keyframes slideToRight{
+			0%{-webkit-transform:translateX(-2000px);transform:translateX(-2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+		@keyframes slideToRight{
+			0%{-webkit-transform:translateX(-2000px);transform:translateX(-2000px);}
+			100%{-webkit-transform:translateX(0);transform:translateX(0);}
+		}
+
+		@-webkit-keyframes slideToBottom{
+			0%{-webkit-transform:translateY(-2000px);transform:translateY(-2000px);}
+			100%{-webkit-transform:translateY(0);transform:translateY(0);}
+		}
+		@keyframes slideToBottom{
+			0%{-webkit-transform:translateY(-2000px);transform:translateY(-2000px);}
+			100%{-webkit-transform:translateY(0);transform:translateY(0);}
+		}
+
+		@-webkit-keyframes slideToTop{
+			0%{-webkit-transform:translateY(2000px);transform:translateY(2000px);}
+			100%{-webkit-transform:translateY(0);transform:translateY(0);}
+		}
+		@keyframes slideToTop{
+			0%{-webkit-transform:translateY(2000px);transform:translateY(2000px);}
+			100%{-webkit-transform:translateY(0);transform:translateY(0);}
+		}
+
+		@keyframes fadeInToTop {
+			0% { opacity: 0; transform: translateY(500px); } 
+			100% { opacity: 1; transform: translateY(0px); }
+		}
+		@-webkit-keyframes fadeInToTop {
+			0% { opacity: 0; -webkit-transform: translateY(500px); } 
+			100% { opacity: 1; -webkit-transform: translateY(0px); }
+		}
+		
+		@keyframes bounceInDown{
+			0%{opacity:0;-webkit-transform:translateY(-2000px);-ms-transform:translateY(-2000px);transform:translateY(-2000px);}
+			60%{opacity:1;-webkit-transform:translateY(30px);-ms-transform:translateY(30px);transform:translateY(30px);}
+			80%{-webkit-transform:translateY(-10px);-ms-transform:translateY(-10px);transform:translateY(-10px);}
+			100%{-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0);}
+		}
+		@-webkit-keyframes bounceInDown{
+			0%{opacity:0;-webkit-transform:translateY(-2000px);transform:translateY(-2000px);}
+			60%{opacity:1;-webkit-transform:translateY(30px);transform:translateY(30px);}
+			80%{-webkit-transform:translateY(-10px);transform:translateY(-10px);}
+			100%{-webkit-transform:translateY(0);transform:translateY(0);}
+		}
+
+		@-webkit-keyframes rubberBand{
+			0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
+			30%{-webkit-transform:scale3d(1.25,0.75,1);transform:scale3d(1.25,0.75,1);}
+			40%{-webkit-transform:scale3d(0.75,1.25,1);transform:scale3d(0.75,1.25,1);}
+			50%{-webkit-transform:scale3d(1.15,0.85,1);transform:scale3d(1.15,0.85,1);}
+			65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1);}
+			75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1);}
+			100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
+		}
+		@keyframes rubberBand{
+			0%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
+			30%{-webkit-transform:scale3d(1.25,0.75,1);transform:scale3d(1.25,0.75,1);}
+			40%{-webkit-transform:scale3d(0.75,1.25,1);transform:scale3d(0.75,1.25,1);}
+			50%{-webkit-transform:scale3d(1.15,0.85,1);transform:scale3d(1.15,0.85,1);}
+			65%{-webkit-transform:scale3d(.95,1.05,1);transform:scale3d(.95,1.05,1);}
+			75%{-webkit-transform:scale3d(1.05,.95,1);transform:scale3d(1.05,.95,1);}
+			100%{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1);}
+		}
+
+		@-webkit-keyframes zoomIn{
+			0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3);}
+			50%{opacity:1;}
+		}
+		@keyframes zoomIn{
+			0%{opacity:0;-webkit-transform:scale3d(.3,.3,.3);transform:scale3d(.3,.3,.3);}
+			50%{opacity:1;}
+		}
+
+	</style>
+	
+</head>
+<body>
+
+	<ul class="list">
+		<li class="spa" data-animate="B1">谢</li>
+		<li class="spa" data-animate="A1">谢</li>
+		<li class="spa" data-animate="B2">你</li>
+		<li class="spa" data-animate="B3">哈</li>
+		<li class="spa" data-animate="A2">哈</li>
+		<li class="spa" data-animate="B4">哈</li>
+		<li class="spa" data-animate="B2">1</li>
+		<li class="spa" data-animate="A3">2</li>
+		<li class="spa" data-animate="B1">3</li>
+		<li class="spa" data-animate="A4">4</li>
+		<li class="spa" data-animate="B3">5</li>
+		<li class="spa" data-animate="A4">6</li>
+	</ul>
+	<ul class="list spa">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<ul class="list spa">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<ul class="list">
+		<li class="spa" data-animate="A1">7</li>
+		<li class="spa" data-animate="A2">8</li>
+		<li class="spa" data-animate="A3">9</li>
+		<li class="spa" data-animate="A4">10</li>
+		<li class="spa" data-animate="B3">11</li>
+		<li class="spa" data-animate="B4">12</li>
+	</ul>
+	<ul class="list">
+		<li class="spa" data-animate="B2">A</li>
+		<li class="spa" data-animate="A3">B</li>
+		<li class="spa" data-animate="B1">C</li>
+		<li class="spa" data-animate="B4">D</li>
+		<li class="spa" data-animate="A2">E</li>
+		<li class="spa" data-animate="B3">F</li>
+		<li class="spa" data-animate="B1">我</li>
+		<li class="spa" data-animate="A1">爱</li>
+		<li class="spa" data-animate="B2">你</li>
+		<li class="spa" data-animate="B3">E</li>
+		<li class="spa" data-animate="A2">N</li>
+		<li class="spa" data-animate="B4">D</li>
+	</ul>
+
+	<script type="text/javascript" src="spa.min.js"></script>
+	<script>
+
+	// ----------------------------------------
+	// 1. 标签添加 'spa' 类名 动画定义在 'animated' 类名上( 如：.animated{animation:fadeInToTop 0.5s ease both;} )
+	// 2. 标签添加 'spa' 类名 动画定义在 'data-animate="classname"' 设定的'classname'类名上( 如：.classname{animation:fadeInToTop 0.5s ease both;} )
+	// 3. 标签添加 'spa animateclass' 类名(如： animate.css 中的animateclass动画类名) 动画时间定义在 'animated' 类名上( 如：.animated{ animation-duration:1s; animation-fill-mode: both;} )
+	
+	// console.profile('性能');
+	// new SPA().start();
+	var spa = new SPA({
+		// spaClass: 'diyclass',
+		// activeClass: 'animated',
+		// visible: true,
+		// delay: 250,
+		// unbind: false,
+		// disable: false, 
+		onLoad: function(el){
+			// console.log( el.nodeName.toLowerCase() );
+			// 可以在此处理图片懒加载
+		},
+		onEnd: function(){
+			// console.log('所有动画都激活完成！');
+		}
+	});
+	spa.start();
+	// console.profileEnd('性能');
+	// console.timeEnd('用时');
+
+	</script>
+
+</body>
+</html>
